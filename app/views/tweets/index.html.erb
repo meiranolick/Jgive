@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tweets</h1>
+
+<%= react_component("App", { greeting: "Hello from react-rails." }) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id str</th>
+      <th>Source</th>
+      <th>Text</th>
+      <th>Created at</th>
+      <th>Retweet count</th>
+      <th>In reply to user id str</th>
+      <th>Favorite count</th>
+      <th>Is retweet</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        <td><%= tweet.id_str %></td>
+        <td><%= tweet.source %></td>
+        <td><%= tweet.text %></td>
+        <td><%= tweet.created_at %></td>
+        <td><%= tweet.retweet_count %></td>
+        <td><%= tweet.in_reply_to_user_id_str %></td>
+        <td><%= tweet.favorite_count %></td>
+        <td><%= tweet.is_retweet %></td>
+        <td><%= link_to 'Show', tweet %></td>
+        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tweet', new_tweet_path %>
